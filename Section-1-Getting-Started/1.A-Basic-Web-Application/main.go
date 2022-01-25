@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func HandlerFunc(w http.Respo nseWriter, req *http.Request) {
+func HandlerFunc(w http.ResponseWriter, req *http.Request) {
 	fmt.Fprintf(w, "<h1> Welcome to my awesome site </h1>")
 }
 
