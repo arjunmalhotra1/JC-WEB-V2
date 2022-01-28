@@ -17,20 +17,20 @@ func contactHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func pathHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintln(w, req.URL.Path)
-	fmt.Fprintln(w, req.URL.RawPath)
+	switch req.URL.Path {
+	case "/":
+		homeHandler(w, req)
+	case "/contact":
+		contactHandler(w, req)
 
-	// switch req.URL.Path {
-	// case "/":
-	// 	homeHandler(w, req)
-	// case "/contact":
-	// 	contactHandler(w, req)
+	default:
+		http.Error(w, "Page not found", http.StatusNotFound)
+		// This below displays "Not Found"
+		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+		// w.WriteHeader(http.StatusNotFound)
+		// fmt.Fprint(w, "Page Not found")
 
-	// default:
-	// 	//TODO: handle page not found error
-	// 	http.Error(w, "Page not found", http.StatusNotFound)
-
-	// }
+	}
 
 }
 
